@@ -3,21 +3,21 @@
   <groupId>com.xhpolaris</groupId>
   <artifactId>service-idl-gen-java</artifactId>
   <versioning>
-    <lastUpdated>20231221065719</lastUpdated>
+    <lastUpdated>20231221072314</lastUpdated>
     <snapshot>
-      <timestamp>20231221.065719</timestamp>
-      <buildNumber>16</buildNumber>
+      <timestamp>20231221.072314</timestamp>
+      <buildNumber>17</buildNumber>
     </snapshot>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>1.0.0-20231221.065719-16</value>
-        <updated>20231221065719</updated>
+        <value>1.0.0-20231221.072314-17</value>
+        <updated>20231221072314</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>1.0.0-20231221.065719-16</value>
-        <updated>20231221065719</updated>
+        <value>1.0.0-20231221.072314-17</value>
+        <updated>20231221072314</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
