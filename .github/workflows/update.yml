@@ -47,7 +47,7 @@ jobs:
 
       - name: Update
         run: |
-          curl -s https://raw.githubusercontent.com/xh-polaris/chore/main/bump_java_version.sh | bash -s --
+          curl -s https://raw.githubusercontent.com/xh-polaris/chore/main/bump_pom_version.sh | bash -s --
           export IDL_DIR=./service-idl
           bash build.sh
 
