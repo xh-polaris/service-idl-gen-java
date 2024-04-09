@@ -32,7 +32,21 @@ jobs:
           (git checkout --orphan ${{ github.event.client_payload.ref }} && rm -rf "!(.git|LICENSE)" && \
           git add LICENSE && git commit -m "feat: init" && git checkout -f meta && \
           git worktree add repo ${{ github.event.client_payload.ref }})
-
+          
+      - name: Checkout IDL
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.client_payload.repository }}
+          ref: ${{ github.event.client_payload.ref }}
+          path: service-idl
+          token: ${{ secrets.ACCESS_TOKEN }}
+          
+      - name: Cache Maven dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: maven-dependencies
+      
       - name: Setup protoc
         uses: arduino/setup-protoc@v1
 
@@ -51,14 +65,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
-          
-      - name: Checkout IDL
-        uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.client_payload.repository }}
-          ref: ${{ github.event.client_payload.ref }}
-          path: service-idl
-          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Maven a jar
         run: |
