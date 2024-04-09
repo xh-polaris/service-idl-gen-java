@@ -50,6 +50,7 @@ jobs:
       - name: Update
         run: |
           curl -s https://raw.githubusercontent.com/xh-polaris/chore/main/bump_pom_version.sh | bash -s --
+          git add pom.xml
           git commit -m "${{ github.event.client_payload.commit_msg }}"
           export IDL_DIR=./service-idl
           bash build.sh
