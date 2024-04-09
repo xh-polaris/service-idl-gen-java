@@ -29,7 +29,7 @@ jobs:
           git config --global user.email "bot@xhpolaris.com"
           git config --global user.name "${{ github.actor }}"
           git worktree add repo ${{ github.event.client_payload.ref }} || \
-          (git checkout --orphan ${{ github.event.client_payload.ref }} && rm -rf !(.git|LICENSE) && \
+          (git checkout --orphan ${{ github.event.client_payload.ref }} && rm -rf "!(.git|LICENSE)" && \
           git add LICENSE && git commit -m "feat: init" && git checkout -f meta && \
           git worktree add repo ${{ github.event.client_payload.ref }})
 
