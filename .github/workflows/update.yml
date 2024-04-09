@@ -27,9 +27,9 @@ jobs:
       - name: Checkout Repository
         run: |
           git worktree add repo ${{ github.event.client_payload.ref }} || \
-          (git checkout -b --orphan ${{ github.event.client_payload.ref }} && \
-          git worktree add repo ${{ github.event.client_payload.ref }} && \
-          git checkout meta)
+          (git checkout --orphan ${{ github.event.client_payload.ref }} && \
+          git add LICENSE && git commit -m "feat: init" && git checkout -f meta && \
+          git worktree add repo ${{ github.event.client_payload.ref }})
 
       - name: Checkout IDL
         uses: actions/checkout@v3
