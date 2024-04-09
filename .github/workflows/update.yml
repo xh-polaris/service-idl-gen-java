@@ -70,3 +70,4 @@ jobs:
           git add .
           git commit -m "${{ github.event.client_payload.commit_msg }}"
           git push origin ${{ github.event.client_payload.ref }}
+          git push origin meta:meta
