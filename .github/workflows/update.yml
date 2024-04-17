@@ -23,15 +23,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: meta
-
-      - name: Checkout Repository
-        run: |
-          git config --global user.email "bot@xhpolaris.com"
-          git config --global user.name "${{ github.actor }}"
-          git worktree add repo ${{ github.event.client_payload.ref }} || \
-          (git checkout --orphan ${{ github.event.client_payload.ref }} && rm -rf "!(.git|LICENSE)" && \
-          git add LICENSE && git commit -m "feat: init" && git checkout -f meta && \
-          git worktree add repo ${{ github.event.client_payload.ref }})
           
       - name: Checkout IDL
         uses: actions/checkout@v3
@@ -55,6 +46,8 @@ jobs:
 
       - name: Update
         run: |
+          git config --global user.email "bot@xhpolaris.com"
+          git config --global user.name "${{ github.actor }}"
           curl -s https://raw.githubusercontent.com/xh-polaris/chore/main/bump_pom_version.sh | bash -s --
           git add pom.xml
           git commit -m "${{ github.event.client_payload.commit_msg }}"
@@ -70,10 +63,15 @@ jobs:
         run: |
           mvn clean deploy
 
-      - name: Commit And Push
+      - name: Upload artifact
+        uses: TencentCloud/cos-action@v1
+        with:
+          secret_id: ${{ secrets.SECRET_ID }}
+          secret_key: ${{ secrets.SECRET_KEY }}
+          cos_bucket: maven-1308722423
+          cos_region: ap-shanghai
+          local_path: repo
+
+      - name: Push meta branch
         run: |
-          cd repo
-          git add .
-          git commit -m "${{ github.event.client_payload.commit_msg }}"
-          git push origin ${{ github.event.client_payload.ref }}
           git push origin meta:meta
