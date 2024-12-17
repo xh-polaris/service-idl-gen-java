@@ -6,7 +6,7 @@
 
     <groupId>com.xhpolaris</groupId>
     <artifactId>service-idl-gen-java</artifactId>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
